@@ -140,9 +140,13 @@ build_dependencies() {
     echo "Prebuild detected (node_modules already exists)"
     npm_rebuild "$BUILD_DIR"
   else
+    echo "Preparing to install from node_modules"
     npm_node_modules "$BUILD_DIR"
+    echo "Done installing from node_modules"
   fi
+  echo "Getting ready for heroku-postbuild"
   run_if_present 'heroku-postbuild'
+  echo "Finishwed with heroku-postbuild"
   # TODO: run_if_present 'build'
 }
 
